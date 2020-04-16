@@ -1,12 +1,14 @@
 //
 // Created by erick-hdz on 14/04/20.
 //
-
 #include <iostream>
 #include <vector>
 #include <list>
 #include <string>
 #include <algorithm>
+#include <fstream>
+#include <iterator>
+#include <set>
 using namespace std;
 
 
@@ -30,10 +32,10 @@ void routine_as_an_example(const vector<Entry>& vec, const list<Entry>& list){
  * @param vector1
  * @return list of Entry
  */
-list<Entry> routine_as_an_example(const vector<Entry> vector1){
+list<Entry> routine_as_an_example(vector<Entry>& vector1){
     list<Entry> res; //this is the mutable object as we can see in the last part
     sort(vector1.begin(),vector1.end());
-    unique_copy(vector1.begin(),vector1.end(),res.begin());
+    unique_copy(vector1.begin(),vector1.end(),back_inserter(res));
     return res;
 }
 
@@ -84,14 +86,14 @@ vector<typename T::iterator> find_all_new(T& t, C c){
 /**
  *
  * @tparam C
- * @tparam D
+ * @tparam D is a value as we can see in the next lines
  * @param c is the call reference as we can see in the next lines of the code as we can see
  * @param d
  * @return
  */
 
 template <typename T>
-using iterator_n = typename T::iterator; //this is the manner to construct a iterator
+using iterator_n = typename T::iterator; //this is the manner to construct a iterator as a generic manner
 template <typename C,typename D>
 vector<iterator_n<C>> find_all_generic(C& c, D d){
     vector<iterator_n<C>> ret;
@@ -120,9 +122,62 @@ void test_new(){
     for(auto p:find_all_generic(vs,"green")){
         std::cerr << "list bug!\n";
     }
+    vector<int> ls{10,20,30,40,50};
+    for(auto p:find_all_generic(ls,50)){
+        if (*p != 50){
+            std::cerr << "vector bug!\n";
+        }
+    }
+}
+//this is the abstract layer as we can see
+void print_element(){
+    vector<int> vector{10,20,30,40,50};
+    for (auto p = vector.begin();p!=vector.end();++p) {
+        std::cout << *p << ',';
+        ++p;
+    }
+    std::cout << '\n';
 }
 
-int main(){
-    std::cout << "This is a test as we can see";
-    test_new();
+ostream_iterator<string> oo{cout};
+int main_fin(){
+    **oo = "hello,";
+    ++oo;
+    *oo = "World\n";
+    return 0;
+};
+
+int main_test_istream(){
+    string from, to;
+    cin >> from >> to;
+
+    // input objects as we can see
+    ifstream in{from}; // this is can atach a file as we can see
+    istream_iterator<string> ii{in};
+    istream_iterator<string> sentinel{};
+
+    //Output objects and iterators as out
+    ofstream out{to};
+    ostream_iterator<string> oo{out, "\n"};
+
+    vector<string> vector{ii,sentinel};
+    sort(vector.begin(),vector.end());
+
+    //Copy as we can see
+    unique_copy(vector.begin(),vector.end(),oo);//this is the method of the write
+    return !in.eof() || !out;
+
 }
+
+int main_test_io() {
+    string from, to;
+    cin >> from >> to;
+
+    ifstream in{from};
+    ofstream out{to};
+    //the next methods as we can see in the next lines of the code as we can see
+    set<string> b{istream_iterator<string>{in}, istream_iterator<string>{}};
+    copy(b.begin(), b.end(), ostream_iterator<string>{out});
+    return !in.eof() || !out;
+}
+
