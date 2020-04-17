@@ -3,22 +3,15 @@
 //
 
 #include "Resource.h"
-#include <iostream>
-#include <list>
-
-class Resource{
-    int value;
-public:
-    Resource(){
-        value = 0;
-    }
-    void reset(){
-        value =0;
-    }
-    int getValue(){
-        return value;
-    }
-    void setValue(int number){
-        value = number;
-    }
-};
+Resource::Resource(){
+    value = 0;
+}
+void Resource::reset() {
+    value = 0;
+}
+int Resource::getValue() {
+    return value;
+}
+void Resource::setValue(int number) {
+    value = number;
+}
