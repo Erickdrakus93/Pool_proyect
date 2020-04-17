@@ -9,6 +9,7 @@
 #include <fstream>
 #include <iterator>
 #include <set>
+#include <thread>
 using namespace std;
 
 
@@ -132,7 +133,7 @@ void test_new(){
 //this is the abstract layer as we can see
 void print_element(){
     vector<int> vector{10,20,30,40,50};
-    for (auto p = vector.begin();p!=vector.end();++p) {
+    for (auto p =vector.begin();p!=vector.end();++p) {
         std::cout << *p << ',';
         ++p;
     }
@@ -181,3 +182,47 @@ int main_test_io() {
     return !in.eof() || !out;
 }
 
+
+// here we can define the next counter in the next sense;
+
+int count_num(char* p, char x){
+    // count the number of ocurrences of x in p;
+    // p is assumed to point to a zero-terminated array of char
+    if (p == nullptr){
+        return 0;
+    }
+    int count =0;
+    for(;*p!=0;++p){
+        if (*p == x)
+            count+=count;
+        }
+    return count;
+}
+//this is a simple structure as we can see
+struct vector_nw{
+    int size;
+    double* elements;
+};
+
+void vector_init(vector_nw& vector,int s){
+    vector.elements = new double[s];
+    vector.size = s;
+
+}
+
+void sortBuble(double* array[],int n){
+    double* temp;
+    for (int i = 0; i <n ; ++i) {
+        for (int j = 0; j <n-1 ; ++j) {
+            if (*array[j]>*array[j+1]){
+                temp = array[j];
+                array[j] = array[j+1];
+                array[j+1] = temp;
+            }
+
+        }
+
+    }
+}
+
+std::vector<thread> my_threads;

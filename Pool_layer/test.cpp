@@ -1,6 +1,7 @@
 //
 // Created by erick-hdz on 17/04/20.
 //
+#include <link.h>
 #include "Resource.cpp"
 #include "ObjectPool.cpp"
 
