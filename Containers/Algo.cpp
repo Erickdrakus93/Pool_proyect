@@ -10,6 +10,7 @@
 #include <iterator>
 #include <set>
 #include <thread>
+#include <mutex>
 using namespace std;
 
 
@@ -209,8 +210,8 @@ void vector_init(vector_nw& vector,int s){
     vector.size = s;
 
 }
-
-void sortBuble(double* array[],int n){
+//this is the commit as we can see in the next lines of the code as we can see
+void BubbleSort(double* array[],int n){
     double* temp;
     for (int i = 0; i <n ; ++i) {
         for (int j = 0; j <n-1 ; ++j) {
@@ -225,4 +226,27 @@ void sortBuble(double* array[],int n){
     }
 }
 
-std::vector<thread> my_threads;
+mutex m;
+/**
+ * This is an example of manage the resources as we can see
+ */
+void new_func(){
+    unique_lock<mutex> lock{m,defer_lock};
+    //this is to manipulate the data as we can see in the next lines of the code
+}
+
+template<typename T>
+void swap(T& t1, T& t2){
+    T temp = t1;
+    t1 = t2;
+    t2 = temp;
+}
+
+template<typename T>
+void print(T& t){
+    for(const auto& x:t){
+        cout << "" << x;
+    }
+    cout << endl;
+
+}

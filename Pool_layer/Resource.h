@@ -13,7 +13,7 @@ class Resource {
 public:
     Resource();
     void reset();
-    int getValue();
+    int getValue() const;
     void setValue(int number);
 
 };

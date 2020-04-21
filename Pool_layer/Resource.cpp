@@ -6,9 +6,12 @@
 Resource::Resource(){
     value = 0;
 }
-int Resource::getValue() {
+int Resource::getValue() const {
     return value;
 }
 void Resource::setValue(int number) {
     value = number;
+}
+void Resource::reset() {
+    value = 0;
 }
