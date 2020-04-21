@@ -22,3 +22,9 @@ template <typename T>
 void Resource_abstract<T>::setValue(T vl) {
     value = vl;
 }
+
+template<typename T>
+
+Resource_abstract<T>::~Resource_abstract() {
+    delete value;
+}

@@ -101,7 +101,7 @@ std::pair<A, B> * Map<A,B>::end() {
 }
 
 template<class A,class B>
-B & Map<A,B>::operator[](const A &a) {
+B& Map<A,B>::operator[](const A& a) {
     for (auto& x:element){
         if (a==x.first){
             return x.second;

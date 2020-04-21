@@ -250,3 +250,51 @@ void print(T& t){
     cout << endl;
 
 }
+/**
+ * All the attributes is the low level of memory resources
+ * @tparam C
+ * @param a
+ * @param b
+ */
+template<class C>
+void swap_compiler_time(C& a,C& b){
+    C temp{static_cast<C&&>(a)};//this is the calling the references as we can see
+    a = static_cast<C&&>(b);
+    b = static_cast<C&&>(temp);
+}
+/**
+ * Here we can see in the next manner as wr
+ * @tparam A
+ * @param a
+ * @param b
+ */
+template<typename A>
+void swap_manner_as(A& a, A& b) {
+    A temp{move(a)}; //this is the manner of the constructor
+    b = move(b);
+    b = move(temp);
+}
+//this is the manner of the rvalue as we can see
+std::string h(string&& r){
+    if (!r.empty()){//the other way is to write r.size()
+        r[0] = std::toupper(r[0]);
+    }
+    return r;
+}
+// here we can declar in the next manner as we can see
+// the constant is the main part of the examples as we can see
+
+void i_h(int* p){
+    while (*p){
+        cout << ++*p;
+    }
+}
+//here we can change the object in a dynamic way
+
+int i_h_k(int& p){
+    int* k = &p;
+    while (*k){
+        cout << ++*k;
+    }
+}
+

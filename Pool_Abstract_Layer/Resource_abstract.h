@@ -8,6 +8,7 @@
 template <typename T>
 class Resource_abstract {
     T* value = new T();//this is the pointer of the value as we can see
+    //Eventually it will be reset to nullptr calling reset method
 public:
     /**
      * Basic constructor as we can  see in the next lines of the code
@@ -30,6 +31,10 @@ public:
      * @return void
      */
     void setValue(T vl);
+     /**
+      *
+      */
+      ~Resource_abstract();
 };
 
 
