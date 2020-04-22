@@ -296,5 +296,30 @@ int i_h_k(int& p){
     while (*k){
         cout << ++*k;
     }
+    return p;
 }
 
+//here we can write a search generic algorithm
+
+template<typename A,typename B>
+bool find_all(A& a, B b){
+    auto p = find(a.begin(),a.end(),b);
+    if (p != a.end()){
+        return true;
+    } else{
+        return false;
+    }
+}
+/**
+ * This is a compact manner as we can see in the next part of the main
+ * Example
+ * @tparam A
+ * @tparam B
+ * @param a
+ * @param b
+ * @return
+ */
+template<typename A,typename B>
+bool find_element(A& a, B b){
+    return find(a.begin(),a.end(),b) != b.end();
+}

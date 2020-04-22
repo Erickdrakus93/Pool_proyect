@@ -123,7 +123,7 @@ bool operator==(const Vector& vector1,const Vector& vector2){
     }
     return true;
 }
-bool Vector::operator==(Vector& vector) {
+bool Vector::operator==(const Vector& vector) {
     if (size!=vector.get_size()){
         throw std::out_of_range{"Out of the range of the vector"};
     }

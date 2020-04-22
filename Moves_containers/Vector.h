@@ -25,7 +25,7 @@ public:
     Vector& operator*(double a);
     Vector(Vector&&) noexcept ;
     Vector& operator=(Vector&&) noexcept;
-    bool operator==(Vector&);
+    bool operator==(const Vector&);
 };
 
 
