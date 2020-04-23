@@ -10,7 +10,8 @@
 template<typename T>
 class List_iter: public Iterator<T> {
 public:
-    List_iter(List_iter<T>& ls):
+    //this is the constructor of the iter as we can see
+    explicit List_iter(List<T>& ls):
     list(ls){
         list.reset();
     };
