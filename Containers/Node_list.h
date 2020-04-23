@@ -23,7 +23,7 @@ public:
 
 protected:
     T data;
-    Node_list next;
+    Node_list next;//this is the manner as we can see
 };
 
 

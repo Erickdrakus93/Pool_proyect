@@ -67,7 +67,7 @@ void List_iter<T>::pre_insert(T t) {
 template<typename  T>
 void List_iter<T>::remove() {
      if (list.isEmpty()){
-         std::cout << "This is the main example";
+         std::cout << "The list is empty:\n";
      }else{
          if (current == list.first){
              list.first = current->next;
@@ -78,4 +78,5 @@ void List_iter<T>::remove() {
          current = nullptr;
      }
 }
-//this is the manner as we can see in the next manner as we can see
+//this is the manner as we can see in the next manner as we can see in the next manner as we can se
+//this is the manner as we can see in the next lines of the code
