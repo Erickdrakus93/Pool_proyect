@@ -226,6 +226,18 @@ void BubbleSort(double* array[],int n){
     }
 }
 
+template<typename T>
+void BubbleSort_t(T* t, int len){
+    for (int i = 0; i <len ; ++i) {
+        for (int j = 0; j <len-1 ; ++j) {
+            if(t[j+1]>t[j]){
+                swap(t[j+1],t[j]);
+            }
+        }
+
+    }
+}
+
 mutex m;
 /**
  * This is an example of manage the resources as we can see
@@ -236,7 +248,7 @@ void new_func(){
 }
 
 template<typename T>
-void swap(T& t1, T& t2){
+void Swap(T& t1, T& t2){
     T temp = t1;
     t1 = t2;
     t2 = temp;
@@ -322,4 +334,45 @@ bool find_all(A& a, B b){
 template<typename A,typename B>
 bool find_element(A& a, B b){
     return find(a.begin(),a.end(),b) != b.end();
+}
+// here we can declare a binary search as we can see
+// this is the manner as we can see in the next lines of the code as we can see
+
+template<typename T>
+int search(T* a,T key,int first,int last){
+    while (first<=last){
+        int middle = (first+last)/2;
+        if (key < a[middle]){
+            last = middle -1;
+        } else if(key>a[middle]){
+            first = middle+1;
+        } else{
+            return middle;
+        }
+    }
+    return -1; //not found
+}
+//In the next lines of the code  we can see a minium
+
+template<typename T>
+T max(T&a,T&b){
+    return a>b ? b:a;
+}
+
+void delta_encode(unsigned char* buffer,int len){
+    unsigned char last = 0;
+    for (int i = 0; i <len ; ++i) {
+        unsigned char current = buffer[i];
+        buffer[i] = current-last;
+        last = current;
+    }
+}
+
+void delta_decode(unsigned char* buffer, int len){
+    unsigned char last = 0;
+    for (int i = 0; i <len ; ++i) {
+        unsigned char delta = buffer[i];
+        buffer[i] = delta + last;
+        last = buffer[i];
+    }
 }

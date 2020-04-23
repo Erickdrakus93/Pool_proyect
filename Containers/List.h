@@ -7,9 +7,11 @@
 
 #include <iostream>
 #include "Node_list.h"
+#include "List_iter.h"
 
 template<typename T>
 class List {
+    friend List_iter<T>;
 public:
     explicit List();
     ~List();

@@ -8,12 +8,16 @@
 #include "Node_list.h"
 
 template<typename T>
+/**
+ * This is an extension of the iterators
+ * @tparam T
+ */
 class List_iter: public Iterator<T> {
 public:
     //this is the constructor of the iter as we can see
     explicit List_iter(List<T>& ls):
     list(ls){
-        list.reset();
+        reset();
     };
     void reset() override;
     List_iter<T>& operator=(T t) override ;
@@ -26,7 +30,7 @@ public:
 protected:
     Node_list<T>* current;//this it will work as the iterator
     Node_list<T>* previous;
-    List<T>& list;
+    List<T>& list;//this is the list to transverse
 
 };
 

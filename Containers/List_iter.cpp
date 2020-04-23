@@ -4,6 +4,7 @@
 
 #include "List_iter.h"
 #include "Node_list.h"
+#include "list"
 
 template<typename T>
 void List_iter<T>::reset() {
@@ -80,3 +81,24 @@ void List_iter<T>::remove() {
 }
 //this is the manner as we can see in the next manner as we can see in the next manner as we can se
 //this is the manner as we can see in the next lines of the code
+
+//another form of contruct is:
+using namespace std;
+template<typename A,typename B>
+void find(A& a,B b){
+    find(a.begin(),a.end(),b) != a.end();
+}
+
+template<typename T>
+using iterator_t = typename T::iterator;
+
+template<typename A,typename B>
+list<iterator_t<A>>find_all(A& a,B b){
+    list<iterator_t<A>> res;
+    for(auto* x:a){
+        if(*x == b){
+            res.push_back(x);
+        }
+    }
+    return res;
+}

@@ -6,10 +6,12 @@
 #define POOL_PROYECT_NODE_LIST_H
 #include <istream>
 #include "List.h"
+#include "List_iter.h"
 
 template<typename  T>
 class Node_list {
     friend List<T>;
+    friend List_iter<T>;
 public:
     /**
      * Constructor,and main constructor

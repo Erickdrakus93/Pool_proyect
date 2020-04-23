@@ -6,7 +6,10 @@
 #define POOL_PROYECT_ITERATOR_H
 
 #include <iostream>
-
+/**
+ * This is the abstract class of objects in the next manner as we can see
+ * @tparam T
+ */
 template<typename T>
 class Iterator {
     virtual int reset() = 0;
