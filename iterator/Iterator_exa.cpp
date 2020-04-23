@@ -12,7 +12,7 @@
 class My_iterator: public std::iterator<std::input_iterator_tag,int>{
     int* p; //this is the manner as we can see in the next
 public:
-    My_iterator(int* x): p(x){};
+    explicit My_iterator(int* x): p(x){};
     My_iterator(const My_iterator& mit):p(mit.p){};
     My_iterator& operator++(){
         ++p;
