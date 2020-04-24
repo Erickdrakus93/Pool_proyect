@@ -12,10 +12,14 @@ template<typename T>
 class Queue {
 public:
     // here we can init the default constructor
-    explicit Queue(int s) : size(s + 1), front(0), rear(0) {
+    explicit Queue(std::vector<T>& l){
+        for(auto& x:l){
+            for(auto& y:data){
+                 y=x;
+            }
+        }
 
     };
-
     ~Queue() {
         delete data;
     };
@@ -32,7 +36,6 @@ public:
         return ((data->begin()+1 )% data->size()) == data->end();
     }
 private:
-    int unsigned size,front,rear;
     std::vector<T>* data;
 };
 
