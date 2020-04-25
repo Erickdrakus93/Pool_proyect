@@ -7,7 +7,11 @@
 #include "iostream"
 #include "vector"
 #include "array"
-
+/**
+ * Here we use more layers in the next
+ * Sense of the next template
+ * @tparam T
+ */
 template<typename T>
 class Queue {
 public:
@@ -27,7 +31,7 @@ public:
         data->insert(t);
     };
     T &remove(){
-        data->push_back();
+        data->pop_back();
     };
     bool is_empty(){
         return data->begin() == data->end();

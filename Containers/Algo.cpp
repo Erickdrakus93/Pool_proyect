@@ -11,6 +11,7 @@
 #include <set>
 #include <thread>
 #include <mutex>
+#include "Node_list.h"
 using namespace std;
 
 
@@ -355,7 +356,7 @@ int search(T* a,T key,int first,int last){
 //In the next lines of the code  we can see a minium
 
 template<typename T>
-T max(T&a,T&b){
+inline T max(T&a,T&b){
     return a>b ? b:a;
 }
 
@@ -368,11 +369,25 @@ void delta_encode(unsigned char* buffer,int len){
     }
 }
 
-void delta_decode(unsigned char* buffer, int len){
+void delta_decode(unsigned char* buffer, int len) {
     unsigned char last = 0;
-    for (int i = 0; i <len ; ++i) {
+    for (int i = 0; i < len; ++i) {
         unsigned char delta = buffer[i];
         buffer[i] = delta + last;
         last = buffer[i];
     }
 }
+
+//here we can define the next part
+double ad_all(array<double,100> array) {
+    double s{0};
+    for(auto& x:array){
+        s+=x;
+    }
+    return s;
+}
+
+//in the next lines we can concentrate the next part of the main
+
+
+

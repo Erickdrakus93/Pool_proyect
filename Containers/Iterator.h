@@ -7,6 +7,7 @@
 
 #include <iostream>
 /**
+ * This is the abstract manner as we can see in the next lines of the code
  * This is the abstract class of objects in the next manner as we can see
  * @tparam T
  */
