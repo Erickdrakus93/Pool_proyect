@@ -24,3 +24,10 @@ bool Stack<T>::is_full() {
     return top == size - 1;
 }
 
+template<typename T>
+void Stack<T>::swap(T &a, T &b) {
+    T temp = move(a);
+    a = move(b);
+    b = move(temp);
+}
+

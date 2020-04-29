@@ -11,7 +11,8 @@
 #include <set>
 #include <thread>
 #include <mutex>
-#include "Node_list.h"
+#include <ios>
+
 using namespace std;
 
 
@@ -250,9 +251,9 @@ void new_func(){
 
 template<typename T>
 void Swap(T& t1, T& t2){
-    T temp = t1;
-    t1 = t2;
-    t2 = temp;
+    T temp = move(t1);
+    t1 = move(t2);
+    t2 = move(temp);
 }
 
 template<typename T>
@@ -388,6 +389,166 @@ double ad_all(array<double,100> array) {
 }
 
 //in the next lines we can concentrate the next part of the main
+//In the next lines is the next
+template <typename iter,typename Value>
+Value add(iter begin,iter end){
+    Value* val;
+    while (begin!=end){
+         *val+=*begin;
+         ++val;
+    }
+    return *val;
+};
 
+int main(){
+    double ls[]{1,2,3,4,5};
+    return add<double*,double>(ls,ls+5);
+}
+
+template <typename iter,typename Val>
+/**
+ * This is the classic manner as we can see
+ * @tparam iter
+ * @tparam Val
+ * @param first
+ * @param end
+ * @param v
+ * @return
+ */
+Val accumulate(iter first, iter end,Val v){
+    do {
+        v+=*first;
+        ++first;
+    }while (first!=end);
+    return v;
+};
+void testing(){
+    double ad[]={1,2,3,4};
+    double r1 = accumulate(ad,ad+4,0.0);
+    cout << "The acummulation is:" << r1;
+
+}
+
+template <typename iter,typename Val,typename Oper>
+Val Acummulate(iter first,iter end,Val v,Oper operation){
+    do{
+        v = operation(v,*first);
+        ++first;
+    }while (first!=end);
+    return v;
+}
+void testing_abstract() {
+    double ad[] = {1, 2, 3, 4};
+    double r1 = Acummulate(ad, ad + 4, 0.0, plus<double>());//this is the kind of operation as functor
+    cout << "The value is the next" << r1;
+    double r2 = Acummulate(ad, ad + 4, 1.0, multiplies<double>());
+    cout << "The value is the next :" << r2;
+}
+//here we can declare the next part of the example as we can see.
+
+template<typename T>
+class String {
+     friend bool operator==(String<T>&str_1,String<T>& str_2);
+public:
+    explicit String(unsigned s = 100) : size(s), values{new T[size]} {};
+
+    String(const String<T> &str) : size(str.size), values{new T[size]} {
+        Copy(str);
+    }
+    ~String(){
+        delete[] values;
+    }
+    T& operator[](unsigned i);
+    bool operator==(String<T>& str);
+    unsigned get_size();
+protected:
+    T* values;
+    unsigned size;
+    void Copy(const String<T>&);
+};
+//this is to suposse that is not of the same time+
+/**
+ * This is the copy as the input another layer
+ */
+template<typename T>
+void String<T>::Copy(const String<T>& str) {
+    if(str.size!=size){
+        throw out_of_range{"This is out of the range"};
+    }
+    for (int i = 0; i <str.size ; ++i) {
+         str[i] = values[i];
+    }
+};
+
+template<typename T>
+bool String<T>::operator==(String<T> &str) {
+    if (str.size!=size){
+        throw out_of_range{"This is out of the range"};
+    } else{
+        for (int i = 0; i <str.size ; ++i) {
+            if(str[i]!=values[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+template<typename T>
+bool operator==(String<T> &str_1, String<T> &str_2) {
+    if(str_1.size!=str_2.size){
+        return false;
+    } else{
+        for (int i = 0; i <str_1.size ; ++i) {
+            if (str_1[i]!=str_2[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+template<typename T>
+T &String<T>::operator[](unsigned int i) {
+    return values[i];
+}
+
+template<typename T>
+unsigned int String<T>::get_size() {
+    return size;
+}
+
+//here we can us the concept of ordered as we can see
+template<typename T>
+bool operator<(String<T>& string1, String<T>& string2) {
+    bool eq = true;
+    for (int i = 0; i < string2.size && string1.size; ++i) {
+        if (string1[i] < string2[i]) {
+            return true;
+        } else if (string1[i] > string2[i]) {
+            return !eq;
+        }
+    }
+    if (string2.size < string1.size) {
+        return false;
+    }
+    if(string1.size == string2.size){//this is a manner
+        return false;
+    }
+    return true;
+}
+//the next is to use the next part as the main example as we can see
+
+template<typename T>
+bool Move_the_effect(T& x,T& y) {
+    return x == y ? T{move(x)} != y : false;//here we can call the delete manner as we can see
+}
+
+//This is the manner of the control Structure
+
+//this is the next semantics of COPOS like in mathematics
+template<typename T>
+T& max_generic(T&a,T&b){
+    return a<b ? a:b;
+}
 
 

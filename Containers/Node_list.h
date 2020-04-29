@@ -22,10 +22,9 @@ public:
     ~Node_list(){
         delete data;
     }
-
 protected:
     T data;
-    Node_list next;//this is the manner as we can see
+    Node_list* next;//this is the manner as we can see
 };
 
 

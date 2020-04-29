@@ -18,6 +18,7 @@ public:
      T pop();
      bool is_full();
      bool is_empty();
+     void swap(T& a,T& b);
 private:
     int size;
      int top;

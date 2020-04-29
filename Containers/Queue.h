@@ -17,9 +17,9 @@ class Queue {
 public:
     // here we can init the default constructor
     explicit Queue(std::vector<T>& l){
-        for(auto& x:l){
-            for(auto& y:data){
-                 y=x;
+        for(auto& x:l ){
+            for (auto& y:data ) {
+                x = y;
             }
         }
 
