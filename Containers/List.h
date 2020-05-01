@@ -8,9 +8,11 @@
 #include <iostream>
 #include "Node_list.h"
 #include "List_iter.h"
+#include "ListIter.h"
 
 template<typename T>
 class List {
+    friend ListIter<T>;
     friend Node_list<T>;
     friend List_iter<T>;
 public:
@@ -30,6 +32,8 @@ public:
      * As data Structure;
      * @param t
      */
+
+    void insert_last_with_re(T t);
     void insert_last(T t);
     int remove_from_the_last(T& t);
     void insert(T t);

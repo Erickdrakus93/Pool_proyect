@@ -84,10 +84,10 @@ void List<T>::merge(List<T> &another_list) {
 template<typename T>
 void List<T>::insert_last(T t) {
     Node_list<T>* temp;
-    for (auto* p=first;p;){
+    for (auto* p=first;p;p=p->next){
         if (p->next == nullptr){
             temp =  newNode(t, p);
-            p = temp;//this update the last node as we can see
+            p = temp;//This is the update of the value as we can
         }
     }
 }
@@ -131,7 +131,16 @@ void List<T>::append(List<T>& lst) {
     }
 }
 
-
+template<typename T>
+void List<T>::insert_last_with_re(T t) {
+    Node_list<T>* q = first;
+    Node_list<T>* r;
+    while (q == nullptr){
+        r = newNode(t, q);
+        q = r;
+        q = q->next;
+    }
+}
 //here we have the types that have the next part of the main example
 
 template<typename A,typename B>

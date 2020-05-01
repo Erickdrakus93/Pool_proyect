@@ -82,7 +82,7 @@ void List_iter<T>::remove() {
 //this is the manner as we can see in the next manner as we can see in the next manner as we can se
 //this is the manner as we can see in the next lines of the code
 
-//another form of contruct is:
+//another form of contructing this
 using namespace std;
 template<typename A,typename B>
 void find(A& a,B b){

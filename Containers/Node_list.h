@@ -7,10 +7,12 @@
 #include <istream>
 #include "List.h"
 #include "List_iter.h"
+#include "ListIter.h"
 
 template<typename  T>
 class Node_list {
-    friend List<T>;
+    friend ListIter<T>;
+    friend  List<T>;
     friend List_iter<T>;
 public:
     /**

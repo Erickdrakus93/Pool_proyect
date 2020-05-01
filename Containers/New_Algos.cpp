@@ -183,7 +183,7 @@ void insert_value(T* array,int& n,T x){
          }
          array[j+1] =x;
     }
-    ++n;
+    ++n;//update the size of the array,as we can see
 }
 
 
