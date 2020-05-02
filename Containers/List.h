@@ -20,7 +20,7 @@ public:
     List(const List<T>& lst):first(lst.first){
         Node_list<T>* q = first;
         Node_list<T>* r = lst.first;
-        while (*q && *r) {
+        while ( q!= nullptr && r!= nullptr) {
             q->data = r->data;
             q = q->next && r=r->next;
         }
@@ -41,6 +41,7 @@ public:
     int isEmpty();
     void print();
     void reverse();
+    void reverse_with_while();
     void reverse_the_data();
     void merge(List<T>& another_list);
     void append(List<T>&);

@@ -98,12 +98,13 @@ void print_n(T* array){
 
 //this is to insert a value, we can update as the next manner
 template<typename T>
-void insert(T* array,int& n,int x) {
-    for (int i = n; i > 0 && array[i - 1] > x; --i) {
-        array[i] = array[i - 1];
-        array[i] = x;//here we can put the next as the main part of the main example
+void insert(T* array,int& n,int x){
+    int i = n;
+    for(int j = i; j>0 && array[j]>x;j--){
+        array[j+1] = array[j];
     }
-    n++;//here we can update as we can see in the next part of the maon
+    array[i+1] = x;
+    n++;
 }
 
 template<typename T>
@@ -121,26 +122,23 @@ void insert_search_with_while(T* array, const int n){
 
 template<typename T>
 void insert_search_in_the_manner(T* array,int& n, T x) {
-    for (int i = 0; i < n; ++i) {
-        int j = i - 1;
+    for (int i = 0; i < n; ++i){
         x = array[i];
+        int j = i - 1;
         while (j > 0 && array[j] > x) {
             array[j + 1] = array[j];
+            j--;
         }
-        //this is the location in the next manner as we can see
-        array[j + 1] = x;
+        array[j + 1] = x;//this is the location in the subarray as we can see
     }
-    ++n;//This is updated as we can see in the next part of the main examp,e
+    ++n;
 }
-//In this case we not change the size of the array,
-// Is constant
-// here we can define the next insertion_search algorithm
+
 template<typename T>
 void search_insert(T* array,const int n){
-    T temp;//this is the key to insert:
     for (int i = 0; i <n ; ++i) {
-        temp = array[i];//here we can put in some place
-        for (int j = i; j>1 && array[j-1]>temp ; --j) {
+        T temp = array[i];
+        for (int j = i; j>1 && array[j-1]>temp ; --j){
             array[j] = array[j-1];
             array[j] = temp;
         }
@@ -162,7 +160,7 @@ struct Coditional<false,A,B>{
 
 template<typename T>
 void insert_value_with_for(T* array,int& n,T x){
-    for (int i = 0; i <n ; ++i){
+    for (int i = 1; i <n ; ++i){
         x = array[i];//this is the location as we can see
         for (int j =i-1; j>0 && array[j]>x ; --j) {
              array[j+1] = array[j];
@@ -175,13 +173,14 @@ void insert_value_with_for(T* array,int& n,T x){
 //this is like other with while loop
 template<typename T>
 void insert_value(T* array,int& n,T x){
-    for (int i = 0; i <n ; ++i) {
+    for (int i = 1; i <n ; ++i) {
+         x = array[i];
          int j = i-1;
          while(j>0 && array[j]>x){
              array[j+1] = array[j];
              --j;
-         }
-         array[j+1] =x;
+         };
+         array[j+1] = x;
     }
     ++n;//update the size of the array,as we can see
 }
@@ -190,3 +189,37 @@ void insert_value(T* array,int& n,T x){
 bool has_the_char(const string& s, char c){
     return std::find(s.begin(),s.end(),c)!=s.end();
 }
+
+template<typename iterator,typename value>
+iterator find_the_value(iterator first, iterator last,value val){
+     while (first!=last && *first!=val){
+         ++first;//this is the update of the first iterator
+     }
+     return first;
+}
+
+
+template<typename T>
+void insert_from_the_last(T* array,int& n,T value){
+    for (int i = n ; i>0 ; --i) {
+        int j = i-1;
+         while(j>0 && array[j]>value){
+             array[j+1] = array[j];
+             j--;
+         }
+         array[j+1] = value;
+    }
+    ++n;
+}
+
+template<typename T>
+void insertion_with(T* array, int& n,T value){
+    int i = n;
+    int j = i-1;
+    while (j>0 && array[j]>value){
+        array[j+1] = array[j];
+        --j;
+    }
+    array[j+1] = value;
+    ++n;
+};

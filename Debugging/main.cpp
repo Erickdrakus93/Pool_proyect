@@ -10,6 +10,7 @@
 using namespace std;
 
 int main() {
+    //here we can dote the next as Ordered Structure
     typedef map<string, string, less<>> mapType;
     mapType m;
     string name;
@@ -27,12 +28,12 @@ int main() {
     }
     //finding a name in the next manner
     auto x = m.find(name);
-    cout << name << "number is"<< (*x).second << endl;
+    cout << name << "number is"<< x->second << endl;
     //here we can call the inside method erase,for delete the inside number
     m.erase(x);
     //here we can iterate in the next manner as we can see
     for(auto& item:m){
-        cout << item.first << ":" << item.second << endl;
+        std::cout << item.first << ":" << item.second << std::endl;
     }
     return 0;
 }

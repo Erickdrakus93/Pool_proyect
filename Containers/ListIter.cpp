@@ -62,7 +62,7 @@ template<typename T>
 void ListIter<T>::insert(T t) {
     Node_list<T>* r = list.newNode(t, nullptr);
     if (list.isEmpty()){
-        r = list.first;
+        list.first = r;
     } else{
         r->next = current->next;
         current->next = r;
@@ -94,8 +94,8 @@ void ListIter<T>::insert_in_front_of(T t) {
  */
 template<typename T>
 bool find(ListIter<T>& ls, T t){
-    for (auto* p:ls) {
-        if (ls.data == t ){
+    for (auto& p:ls) {
+        if (p.next == t ){
             return true;
         }
     }

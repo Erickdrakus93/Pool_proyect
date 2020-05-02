@@ -6,10 +6,12 @@
 #include "stack"
 
 
+//the next is in particular a boolean procedure;
 template<typename T>
 int List<T>::isEmpty() {
     return first == nullptr;
-}
+};
+
 template<typename T>
 void List<T>::insert(T t) {
     auto* p = newNode(t,first);
@@ -61,6 +63,18 @@ void List<T>::reverse() {
         std::swap(p, p->next);
     }
 }
+
+template<typename T>
+void List<T>::reverse_with_while() {
+    if(isEmpty()){
+        throw std::out_of_range{"Is empty"};
+    }
+    Node_list<T>* r = first;
+    while (r!= nullptr){
+        std::swap(r,r->next);
+        r = r->next;
+    }
+}
 /**
  * This is the iversion of the order in a way using the Stack
  * Structure as we can see
@@ -84,10 +98,10 @@ void List<T>::merge(List<T> &another_list) {
 template<typename T>
 void List<T>::insert_last(T t) {
     Node_list<T>* temp;
-    for (auto* p=first;p;p=p->next){
-        if (p->next == nullptr){
-            temp =  newNode(t, p);
-            p = temp;//This is the update of the value as we can
+    for (Node_list<T> *p = first; p;) {
+        if (p->next == nullptr) {
+            temp = newNode(t,p);
+            p->next = temp;
         }
     }
 }
@@ -100,10 +114,10 @@ int  List<T>::remove_from_the_last(T& t) {
         return 0;
     }
     Node_list<T>* res;
-    for (auto *p = first; p;) {
-        if (p->next == nullptr) {
-            t = p->data;//This is the data that reference in the data
-            res = p;
+    for (Node_list<T>* p= first; p;p=p->next) {
+        if (p->next== nullptr){
+            res = newNode(t,p);
+             p->next = res;
         }
     }
     //Here we can delete the last
@@ -113,13 +127,12 @@ int  List<T>::remove_from_the_last(T& t) {
 
 template<typename T>
 List<T>& List<T>::operator=(const List<T>& lst) {
-    first = lst.first;
     Node_list<T>* q = first;
     Node_list<T>* r = lst.first;
-    while (*q && *r){
+    while (q!= nullptr && r!= nullptr){
         q->data = r->data;
-        //here we can update in the next manner
-        q->next && r->next;
+        q = q->next;
+        r = r->next;
     }
     return *this;//finally return the update
 }
@@ -133,12 +146,17 @@ void List<T>::append(List<T>& lst) {
 
 template<typename T>
 void List<T>::insert_last_with_re(T t) {
-    Node_list<T>* q = first;
-    Node_list<T>* r;
-    while (q == nullptr){
-        r = newNode(t, q);
-        q = r;
-        q = q->next;
+    if(isEmpty()){
+        std::cout << "The list is empty";
+    } else{
+        Node_list<T>* current= first;
+        Node_list<T>* res;
+        current = (current->next == nullptr);
+        while (current){
+            res = newNode(t,current);
+            current->next = res;
+            current = (current->next == nullptr);
+        }
     }
 }
 //here we have the types that have the next part of the main example
