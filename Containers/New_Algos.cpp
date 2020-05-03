@@ -158,32 +158,6 @@ struct Coditional<false,A,B>{
 
 //the next is a manner as we can see in the next lines of the code
 
-template<typename T>
-void insert_value_with_for(T* array,int& n,T x){
-    for (int i = 1; i <n ; ++i){
-        x = array[i];//this is the location as we can see
-        for (int j =i-1; j>0 && array[j]>x ; --j) {
-             array[j+1] = array[j];
-             array[j+1] = x;
-        }
-    }
-    ++n;
-}
-
-//this is like other with while loop
-template<typename T>
-void insert_value(T* array,int& n,T x){
-    for (int i = 1; i <n ; ++i) {
-         x = array[i];
-         int j = i-1;
-         while(j>0 && array[j]>x){
-             array[j+1] = array[j];
-             --j;
-         };
-         array[j+1] = x;
-    }
-    ++n;//update the size of the array,as we can see
-}
 
 
 bool has_the_char(const string& s, char c){
@@ -223,3 +197,33 @@ void insertion_with(T* array, int& n,T value){
     array[j+1] = value;
     ++n;
 };
+
+//in the next here we eaten with unsorted array
+/**
+ *
+ * @tparam T
+ * @param unsorted Array
+ * @param n this mutable as we can see as we can see
+ * @param value
+ */
+template<typename T>
+void insert_value_in_unsorted(T* array, int& n, T value){
+    for (int i = 0; i <n ; ++i) {
+        value = array[i];
+        int j = i-1;
+        while (j>0 && array[j]>value){
+            array[j+1] = array[j];
+            --j;
+        }
+        array[j+1] = value;
+    }
+    ++n;
+}
+
+//here we have in the STL some structures as we can see
+template<class C>
+void sort(C& c){
+    std::sort(c.begin(),c.end());
+}
+//todo:
+// some_element<-place_of;

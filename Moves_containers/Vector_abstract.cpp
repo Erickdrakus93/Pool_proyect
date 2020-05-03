@@ -105,7 +105,7 @@ Vector_abstract<T>::Vector_abstract(initializer_list<T> list):data{new T[list.si
 template<typename T>
 void Vector_abstract<T>::Push_back(T t) {
     //Updating the size and construct a new
-    sz+=1;
+    ++sz;
     T* new_data = new T[sz];
     for (int i = 0; i <=sz ; ++i) {
          new_data[i] = data[i];
@@ -121,14 +121,16 @@ T Vector_abstract<T>::max() {
     if (sz<0){
         throw  std::out_of_range{"The size is negative"};
     }
-    T max = 0;
-    for (int i = 0; i <sz ; ++i) {
-        max = data[i];
-        if (data[i] < data[i + 1]) {
-            max = data[i+1];
+    for (int i = 0; i <sz-1 ; ++i) {
+        int mayor = i;
+        int j = i+1;
+        while (j<sz && data[mayor]<data[j]){
+            j = mayor;
+            ++j;
         }
+        return data[mayor];
     }
-    return max;
+    return -1; //this is not found
 }
 
 template<typename T>
@@ -136,43 +138,62 @@ T Vector_abstract<T>::min() {
     if (sz<0) {
         throw std::out_of_range{"The size is negative!"};
     }
-    T min = 0;
-    for (int i = 0; i <sz ; ++i) {
-        if(data[i]<data[i+1]){
-             min = move(data[i]);
+    for (int i = 0; i <sz-1 ; ++i) {
+        int smallest = i;
+        int j = i+1;
+        while (j<sz && data[smallest]<data[j]){
+            j = smallest;
+            ++j;
         }
+        return data[smallest];
     }
-    return min;
+    return -1;//this is not found;
 }
+
+//this is linear search;
 template<typename T>
-void Vector_abstract<T>::find(T t) {
+void Vector_abstract<T>::find(T t){
     T* found;
     for (int i = 0; i <sz ; ++i) {
-        *found = (data[i] == t);
+        found = data[i] == t;
+        if(found){
+            std::cout << "Is found in :" << i;
+        } else{
+            std::cout << "Don't found!";
+        }
     }
 }
 
-//here we always have an ordered manner as we can see
+/**
+ * This is the binary_search
+ * @tparam T
+ * @param target
+ * @return
+ */
 template<typename T>
-void Vector_abstract<T>::Search(T target) {
-    unsigned left =0, right = sz-1;
+T&  Vector_abstract<T>::Search(T target) {
+    //if the array is not in sort we have to order
+    std::sort(data[sz]);
+    unsigned left =0, right =sz;
     T* found;
-    for (int i = 0; i <sz ; ++i) {
-        unsigned location = (left+right)/2;
-        *found = (data[location] == target);
-        if(data[location]<target){
-            left = location+1;
-        } else{
-            right=location-1;
+    while (left<right){
+        unsigned medium =(left+right)/2;
+        if(data[medium]==target){
+            return medium;
+        } else if(data[medium]<target){
+            left = medium+1;
+        }else if(data[medium]>target){
+            right = medium-1;
         }
     }
+    return -1;//here we not found the element request
 }
 
 template<typename T>
 unsigned int Vector_abstract<T>::frequency(T x) {
     unsigned res =0;
-    for (auto* p = data;p;p++) {
-        if  (*p == x){
+    for (T* p = data;p;p++) {
+        if  (*p==data){
             ++res;
         }
     }
@@ -185,7 +206,28 @@ int Vector_abstract<T>::find_by_the_index(T t) {
     for (int i = 0; i <sz ; ++i){
         if (data[i] == t){
             index = i;
+            return index;
         }
     }
-    return index;
+    return 0;
 }
+
+
+template<typename T>
+T search(T* sorted_array, int n, T value){
+    int left,right;
+    left = 0;
+    right = n-1;
+    for (int i = 0; i < n ; ++i) {
+        int location =(left+right)/2;
+        if(sorted_array[location] == value){
+             return location;
+        } else if(sorted_array[location]<value){
+            left = location+1;
+        } else if(sorted_array[location]>value){
+            right = location-1;
+        }
+    }
+    return -1; //this is not found
+    
+};

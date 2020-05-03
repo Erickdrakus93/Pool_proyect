@@ -36,7 +36,7 @@ public:
     bool operator==(const Vector_abstract<T>& vector);
     void Push_back(T t);
     void find(T t);
-    void Search(T target);
+    T& Search(T target);
     /**
      * @param t
      * @return index of the value,as we can see

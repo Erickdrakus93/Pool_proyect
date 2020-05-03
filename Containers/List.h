@@ -25,6 +25,7 @@ public:
             q = q->next && r=r->next;
         }
     };
+    List(T* array, int n);
     ~List();
     List<T>& operator=(const List<T>& lst);//this is the copy operator
     /**
@@ -36,6 +37,7 @@ public:
     void insert_last_with_re(T t);
     void insert_last(T t);
     int remove_from_the_last(T& t);
+    static bool has_next(Node_list<T>& r);
     void insert(T t);
     int remove(T& t);
     int isEmpty();

@@ -59,20 +59,23 @@ void List<T>::reverse() {
     if (isEmpty()) {
         throw std::out_of_range{"The list is empty"};
     }
-    for (auto* p = first; p;) {
-        std::swap(p, p->next);
+    std::stack<Node_list<T>*> stack_of_pointers;
+    for (Node_list<T>*p= first; p;p=p->next){
+        stack_of_pointers.push(p);
     }
 }
+
 
 template<typename T>
 void List<T>::reverse_with_while() {
     if(isEmpty()){
         throw std::out_of_range{"Is empty"};
     }
-    Node_list<T>* r = first;
-    while (r!= nullptr){
-        std::swap(r,r->next);
-        r = r->next;
+    std::stack<Node_list<T>*> stack_of_nodes;
+    Node_list<T>* current = first;
+    while (current){
+        stack_of_nodes.push(current);
+        current = current->next;
     }
 }
 /**
@@ -98,7 +101,7 @@ void List<T>::merge(List<T> &another_list) {
 template<typename T>
 void List<T>::insert_last(T t) {
     Node_list<T>* temp;
-    for (Node_list<T> *p = first; p;) {
+    for (Node_list<T> *p = first;p;p=p->next){
         if (p->next == nullptr) {
             temp = newNode(t,p);
             p->next = temp;
@@ -116,8 +119,8 @@ int  List<T>::remove_from_the_last(T& t) {
     Node_list<T>* res;
     for (Node_list<T>* p= first; p;p=p->next) {
         if (p->next== nullptr){
-            res = newNode(t,p);
-             p->next = res;
+            t = p->data;
+            res = p;
         }
     }
     //Here we can delete the last
@@ -159,9 +162,32 @@ void List<T>::insert_last_with_re(T t) {
         }
     }
 }
+
+template<typename T>
+
+ bool List<T>::has_next(Node_list<T>& r) {
+    Node_list<T>* current = r;
+    return current->next != nullptr;
+}
+
+template<typename T>
+List<T>::List(T *array, int n):first(nullptr){
+    for (int i = 0; i <n ; ++i) {
+        insert(array[i]);
+    }
+}
 //here we have the types that have the next part of the main example
 
 template<typename A,typename B>
 bool has_the_element(A& container, B element){
      return std::find(container.begin(),container.end(),element)!= container.end();
+}
+//the next subroutine is the next manner as we can see
+template<typename T>
+void reverse_the_list(List<T>& the_list){
+    Node_list<T>* current= the_list.first;
+     while (the_list.has_next(current)){
+         the_list.first = current->next;
+         current = current->next;
+     }
 }
