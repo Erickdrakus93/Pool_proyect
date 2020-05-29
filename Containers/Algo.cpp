@@ -551,4 +551,143 @@ T& max_generic(T&a,T&b){
     return a<b ? a:b;
 }
 
+//here we can define the next compact subroutine
+namespace Est{
 
+    /**
+     *
+     * Here we can call elegantly as sort(v) to sort the container c of type C
+     * @tparam C
+     * @param c
+     */
+    template<typename C>
+    void sort(C& c){
+        std::sort(c.begint(),c.end());
+
+    }
+
+    template<typename C, typename Pred>
+    void sort_pred(C& c, Pred pred){
+        std::sort(c.begin(),c.end(),pred);
+
+    }
+}
+//here we can think in the next to be a special palindrome
+//here we can transverse in the next sense of the word;
+
+bool is_palindrome(const string& str){
+    int init = 0;
+    int last = str.length()-1;
+    while(init<last){
+        if (str[init]!=str[last]){
+            return false;
+        }
+        ++init;
+        --last;
+    }
+    //finally is true
+    return true;
+}
+
+//the next is the same of the ptrs
+//this is the manner as we can see
+bool is_palindrome_ptr_version(const char* first, const char* last){
+    while (first<last){
+        if(*first!=*last){
+            return false;
+        }//this is will be updated as we can see.
+        ++first;
+        --last;
+    }
+    return true;
+}
+
+
+//algorithm of search as the find
+//in this the case is the main example as we can see
+template<typename In,typename T>
+In find_another(In first,In last,const T& val){
+    while (first!=last && *first!=val){
+        ++first;
+    }
+    return first;
+
+}
+
+//here we can set the next semantics in the next lines of the code
+
+
+template<typename In,typename Pred>
+In find_if(In first, In last, Pred p){
+    while (first!=last && !p(*first)){
+        ++first;
+    }
+    return first;
+}
+//this is the level of the next semantics as we can see
+//here we have the next logic
+//here we can transverse the container in the next lines of the code
+double* high(double* first,const double* last){
+    double h = -1;
+    double* max;
+
+    for(auto p=first;p!=last;++p){
+        if (h<*p){
+            max = p;//this is the location in memory for the max;
+            h =*p;
+        }
+    }
+    return max;
+};
+//this is the manner to return the pointer of the main max as we can see
+double* find_in_another_way(vector<double>& values) {
+    double h = -1;//this is the init of the arbitrary manner as we can see
+    double *max = nullptr;
+    for (auto value:values) {
+        if (h < value) {
+            max = &value;
+            h = value;
+        }
+    }
+    return max;
+};
+
+//here we can define the next part of the main example
+template<typename Iter>
+Iter the_high(Iter first,Iter last){
+    Iter high = first;//here we can define the high like the first
+    for (auto p=first;p!=last;++p) {
+        if(*high<*p){
+            high = p;//update the value of the high;
+        }
+    }
+    return high;//this is the value that be updated;
+};
+
+
+template<typename Iter>
+
+void advance(Iter& iter,int n) {
+    while (n > 0) {
+        ++iter;
+        --n;
+    }
+}
+//here we can use the next part of the advance
+//here we need that pointer move backward
+template<typename Iter>
+void advance_in_general(Iter& iter,int n){
+    if(n<0) {
+        --iter;
+    } else{
+        ++iter;
+    }
+}
+
+
+template<typename C>
+void prt(C& container){
+    for(const auto& eleme:container){
+        std::cout << eleme << '\n' << std::endl;
+    };
+}

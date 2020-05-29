@@ -30,7 +30,7 @@ public:
     bool operator !=(const My_iterator& rhs) const{
         return p!=rhs.p;
     }
-    int&operator*(){
+    int& operator*(){
         return *p;
     }
 };

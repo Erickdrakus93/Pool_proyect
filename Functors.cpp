@@ -23,9 +23,8 @@ public:
         return x<val;
     }
 };
-//Examples as we can see //
-Less_than<int> int_example{45};
-Less_than<std::string> str_example{"Erick"};
+    Less_than<int> int_example{45};
+    Less_than<std::string> str_example{"Erick"};
 /**
  * This is a manner as we can see of testing
  * @param n
