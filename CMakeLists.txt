@@ -6,4 +6,5 @@ add_library(Pool_proyect library.cpp library.h library.cpp Containers Stack.h St
         Proxies Error_Handlers.cpp Implement_Smart_ptrs Debugging
         IOS_examples Templates
         functional_programm MonteCarlo_Simulations
-        Neuron_layer)
+        Neuron_layer Examples_with_sets
+        Hackr_probls)

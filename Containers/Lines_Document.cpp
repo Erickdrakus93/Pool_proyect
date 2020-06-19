@@ -53,11 +53,12 @@ void print(Document& document){
 
 void erase_line(Document& doc, int n){
     //here we can use the next part of the logic
-     if(n<0 || doc.line.size()-1<=0){
+     if(n<0 || doc.line.size()-1<n){
          return;
      }
+     //here we call the begin() function in the next part of the main example as we can see
      auto p = doc.line.begin();//this is the iterator
-     advance(p,n);
+     advance(p,n);//this is the STD advance function
      doc.line.erase(p);
 }
 //this is the manner to use the next part of the use of the advance
@@ -102,12 +103,19 @@ T& find(In first,In last,T& val){
             return x;
         }
     }
-    return last;
+    return last;//here we not found;
 }
 
 template<typename In,typename T>
-T& find_log(In first,In last,T&val){
+T& find_log(In first,In last,const T&val){
     while(first!=last && *first!=val){
         ++first;
     }
+    return first;
+}
+
+
+int main(){
+    Document my_doc{};
+    print(my_doc);
 }

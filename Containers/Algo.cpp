@@ -12,6 +12,7 @@
 #include <thread>
 #include <mutex>
 #include <ios>
+#include <unordered_map>
 
 using namespace std;
 
@@ -642,8 +643,8 @@ double* high(double* first,const double* last){
 //this is the manner to return the pointer of the main max as we can see
 double* find_in_another_way(vector<double>& values) {
     double h = -1;//this is the init of the arbitrary manner as we can see
-    double *max = nullptr;
-    for (auto value:values) {
+    double*  max;
+    for (auto& value:values) {
         if (h < value) {
             max = &value;
             h = value;
@@ -690,4 +691,4 @@ void prt(C& container){
     for(const auto& eleme:container){
         std::cout << eleme << '\n' << std::endl;
     };
-}
+};
